@@ -8,7 +8,7 @@ namespace Calculator.BLL
 {
 	public class Calculations
 	{
-		public int Add(int firstnumber, int secoundnumber) 
+		public float Add(float firstnumber, float secoundnumber) 
 		{ 
 		    return firstnumber + secoundnumber;
 		}

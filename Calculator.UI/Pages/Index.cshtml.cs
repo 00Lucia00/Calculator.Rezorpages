@@ -9,21 +9,24 @@ namespace Calculator.UI.Pages
 	{
 		private readonly ILogger<IndexModel> _logger;
 
-		[BindProperty] 
-		public int firstnumber { get; set; }
 		[BindProperty]
-		public int secoundnumber { get; set; }
+        public float FirstNumber { get; set; }
+        [BindProperty]
+        public float SecondNumber { get; set; }
 
-		public int result { get; set; }
+        public float result { get; set; }
 
-		public void OnGet()
+        public string? CalcMethod { get; set; }
+        
+
+        public void OnGet()
 		{
 			new DataAccess().GetData();
 		}
 
 		public void OnPost()
 		{
-			result = new Calculations().Add(firstnumber, secoundnumber);
+			result = new Calculations().Add(FirstNumber, SecondNumber);
 		}
 	}
 }

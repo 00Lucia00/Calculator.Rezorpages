@@ -5,7 +5,25 @@
 }
 
 <form method="post">
-    <input type="number" placeholder="First number"/>
-    <input type="number" placeholder="Secound number"/>
-    <button type="submit" placeholder="Result"></button>
+    <div class="form-control">
+        <div class="input-group-lg">
+            <label class="form-label" for="calculation-method">Calculation method:</label>
+            <select class="form-select" asp-for="CalcMethod">
+                <option>--- Select method ---</option>
+                <option value="add">Add</option>
+                <option value="subtract">Subtract</option>
+                <option value="multiply">Multiply</option>
+                <option value="divide">Divide</option>
+            </select>
+        </div>
+        <div class="mt-2 form-control">
+            <label class="form-label" for="first-number-input">First number:</label>
+            <input id="first-number-input" type="number" asp-for="FirstNumber" />
+            <label class="form-label" for="second-number-input">Second number:</label>
+            <input id="second-number-input" type="number" asp-for="SecondNumber" />
+        </div>
+        <div class="mt-2">
+            <button class="btn btn-outline-dark" type="submit">Calculate!</button>
+        </div>
+    </div>
 </form>
