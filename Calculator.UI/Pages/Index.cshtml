@@ -23,6 +23,8 @@
             <input id="second-number-input" type="number" asp-for="SecondNumber" />
         </div>
         <div class="mt-2">
+            <label class="form-label" for="Output-Resault">Resault:</label>
+            <input type="number" disabled asp-for="@Model.result"/>
             <button class="btn btn-outline-dark" type="submit">Calculate!</button>
         </div>
     </div>
