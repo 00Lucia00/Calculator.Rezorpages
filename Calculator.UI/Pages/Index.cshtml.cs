@@ -1,5 +1,4 @@
 ﻿using Calculator.BLL;
-using Calculator.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -21,7 +20,7 @@ namespace Calculator.UI.Pages
 
         public void OnGet()
 		{
-			new DataAccess().GetData();
+			
 		}
 
 		public void OnPost()

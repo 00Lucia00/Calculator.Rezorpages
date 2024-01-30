@@ -1,4 +1,5 @@
 ﻿using Calculator.BLL;
+using Calculator.Domain;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace Calculator.Test
 {
     public class TestCalculations
     {
+        // Using FluantAssertions
+
         [Fact]
         public void InvalidCalMethod_ReturnNull()
         {
@@ -19,7 +22,8 @@ namespace Calculator.Test
             //When
             var result = cal.Calculate(calMethod, 1f, 1f);
             //Then
-            result.Should().BeNull();
+            result.Successful.Should().BeFalse();
+            result.Error.Should().BeOfType<ArgumentException>();
         }
 
         [Fact]
@@ -31,9 +35,10 @@ namespace Calculator.Test
             string calcMethod = "add";
             Calculations cal = new();
             //When
-            float? result = cal.Calculate(calcMethod, number1, number2);
+            CalculationResult result = cal.Calculate(calcMethod, number1, number2);
             //Then
-            result.Should().Be(40f);
+            result.Successful.Should().BeTrue();
+            result.Result.Should().Be(40f);
         }
 
         [Fact]
@@ -45,9 +50,10 @@ namespace Calculator.Test
             string calcMethod = "add";
             Calculations cal = new();
             //When
-            float? result = cal.Calculate(calcMethod, number1, number2);
+            CalculationResult result = cal.Calculate(calcMethod, number1, number2);
             //Then
-            result.Should().Be(float.MaxValue + float.MaxValue);
+            result.Successful.Should().BeTrue();
+            result.Result.Should().Be(float.MaxValue + float.MaxValue);
         }
 
         [Fact]
@@ -59,9 +65,10 @@ namespace Calculator.Test
             string calcMethod = "divide";
             Calculations cal = new();
             //When
-            float? result = cal.Calculate(calcMethod, number1, number2);
+            CalculationResult result = cal.Calculate(calcMethod, number1, number2);
             //Then
-            result.Should().Be(number1/number2);
+            result.Successful.Should().BeFalse();
+            result.Error.Should().BeOfType<DivideByZeroException>();
         }
 
 
@@ -74,9 +81,10 @@ namespace Calculator.Test
             string calcMethod = "subtract";
             Calculations cal = new();
             //When
-            float? result = cal.Calculate(calcMethod, number1, number2);
+            CalculationResult result = cal.Calculate(calcMethod, number1, number2);
             //Then
-            result.Should().Be(20f);
+            result.Successful.Should().BeTrue();
+            result.Result.Should().Be(20f);
         }
 
         
