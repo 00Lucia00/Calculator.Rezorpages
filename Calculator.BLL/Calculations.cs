@@ -34,7 +34,7 @@ namespace Calculator.BLL
 					return new CalculationResult()
 					{ 
 					  Successful = false,
-					  Error = new ArgumentException("Not a valid calculation method")
+					  Error = new ArgumentException("Not a valid calculation method!")
 					};
 				}
 			}
@@ -117,7 +117,7 @@ namespace Calculator.BLL
             {
 				if (secondnumber == 0f ) // detta kaster ner värdet till catch
 				{
-					throw new DivideByZeroException();
+					throw new DivideByZeroException("You can not divide by 0!!");
 				}
 
                 float result = firstnumber / secondnumber;
