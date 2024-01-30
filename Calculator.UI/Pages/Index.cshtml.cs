@@ -7,12 +7,12 @@ namespace Calculator.UI.Pages
 {
 	public class IndexModel : PageModel
 	{
-		private readonly ILogger<IndexModel> _logger;
+
 
 		[BindProperty]
-        public float FirstNumber { get; set; }
+        public float firstnumber { get; set; }
         [BindProperty]
-        public float SecondNumber { get; set; }
+        public float secondnumber { get; set; }
 
         public float result { get; set; }
 
@@ -26,7 +26,7 @@ namespace Calculator.UI.Pages
 
 		public void OnPost()
 		{
-			result = new Calculations().Add(FirstNumber, SecondNumber);
+            
 		}
 	}
 }
