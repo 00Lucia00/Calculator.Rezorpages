@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calculator.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Calculator.BLL
 {
 	public class Calculations
 	{
-		public float? Calculate(string calcMethod, float firstnumber, float secondnumber)
+		public CalculationResult Calculate(string calcMethod, float firstnumber, float secondnumber)
 		{
 			switch (calcMethod)
 			{
@@ -30,31 +31,112 @@ namespace Calculator.BLL
 				}
 				default:
 				{
-					return null;
+					return new CalculationResult()
+					{ 
+					  Successful = false,
+					  Error = new ArgumentException("Not a valid calculation method")
+					};
 				}
 			}
 		}
 
 		//Calculation methods
 		//ADD
-		private float Add(float firstnumber, float secondnumber) 
-		{ 
-		    return firstnumber + secondnumber;
+		private CalculationResult Add(float firstnumber, float secondnumber) 
+		{
+			try
+			{
+				float result = firstnumber + secondnumber;
+				CalculationResult calResult = new()
+				{
+					Successful = true,
+					Result = result
+				};
+				return calResult;
+			}
+		    catch (Exception e)
+			{
+				CalculationResult calResult = new()
+				{
+					Successful = false,
+				    Error = e
+				};
+				return calResult;
+			}
 		}
 		//Subtract
-		private float Subtract(float firstnumber, float secondnumber) 
-		{ 
-		    return firstnumber - secondnumber;
-		}
+		private CalculationResult Subtract(float firstnumber, float secondnumber) 
+		{
+            try
+            {
+                float result = firstnumber - secondnumber;
+                CalculationResult calResult = new()
+                {
+                    Successful = true,
+                    Result = result
+                };
+                return calResult;
+            }
+            catch (Exception e)
+            {
+                CalculationResult calResult = new()
+                {
+                    Successful = false,
+                    Error = e
+                };
+                return calResult;
+            }
+        }
 		//Multiply
-		private float Multiply(float firstnumber, float secondnumber) 
-		{ 
-		    return firstnumber * secondnumber;
-		}
+		private CalculationResult Multiply(float firstnumber, float secondnumber) 
+		{
+            try
+            {
+                float result = firstnumber * secondnumber;
+                CalculationResult calResult = new()
+                {
+                    Successful = true,
+                    Result = result
+                };
+                return calResult;
+            }
+            catch (Exception e)
+            {
+                CalculationResult calResult = new()
+                {
+                    Successful = false,
+                    Error = e
+                };
+                return calResult;
+            }
+        }
 		//Divide
-		private float Divide(float firstnumber, float secondnumber) 
-		{ 
-		    return firstnumber / secondnumber;
-		}
+		private CalculationResult Divide(float firstnumber, float secondnumber) 
+		{
+            try
+            {
+				if (secondnumber == 0f ) // detta kaster ner värdet till catch
+				{
+					throw new DivideByZeroException();
+				}
+
+                float result = firstnumber / secondnumber;
+                CalculationResult calResult = new()
+                {
+                    Successful = true,
+                    Result = result
+                };
+                return calResult;
+            }
+            catch (Exception e)
+            {
+                CalculationResult calResult = new()
+                {
+                    Successful = false,
+                    Error = e
+                };
+                return calResult;
+            }
+        }
 	}
 }
